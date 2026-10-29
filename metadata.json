@@ -1,0 +1,6 @@
+{
+  "name": "APPSC Group 2 MCQ Practice Portal",
+  "description": "APPSC Group 2 examination preparation platform with interactive MCQ practice arenas and test performance reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

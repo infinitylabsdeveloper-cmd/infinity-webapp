@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>APPSC Group 2 MCQ Practice Portal</title>
+    <meta name="description" content="APPSC Group 2 examination preparation platform with interactive MCQ practice arenas and test performance reports." />
+    
+    <!-- Mobile WebView & PWA Capability -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="theme-color" content="#090d16" />
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="APPSC Group 2 MCQ Practice Portal" />
+    <meta property="og:description" content="APPSC Group 2 examination preparation platform with interactive MCQ practice arenas and test performance reports." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+
+    <!-- Razorpay Standard Web Checkout SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <!-- High-Performance Web & Regional Telugu Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Sans+Telugu:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Poppins:wght@400;500;600;700;800&family=Ramabhadra&display=swap" rel="stylesheet">
+
+    <!-- Performance styling tweaks for WebViews/Play Store -->
+    <style>
+      html, body {
+        -webkit-tap-highlight-color: transparent; /* Clean responsive touch state */
+      }
+    </style>
+    <script>
+      // Gracefully handle Vite HMR WebSocket in cloud/iframe preview environment where HMR is disabled
+      (function() {
+        var OriginalWebSocket = window.WebSocket;
+        if (OriginalWebSocket) {
+          window.WebSocket = function(url, protocols) {
+            var urlStr = String(url || '');
+            if (protocols === 'vite-hmr' || protocols === 'vite-ping' || urlStr.indexOf('token=') !== -1 || urlStr.indexOf(':24678') !== -1) {
+              return {
+                readyState: 1, // OPEN
+                OPEN: 1,
+                CLOSED: 3,
+                CLOSING: 2,
+                CONNECTING: 0,
+                send: function() {},
+                close: function() {},
+                addEventListener: function(event, callback) {
+                  if (event === 'open') {
+                    setTimeout(callback, 0);
+                  }
+                },
+                removeEventListener: function() {},
+                dispatchEvent: function() { return true; }
+              };
+            }
+            return new OriginalWebSocket(url, protocols);
+          };
+          window.WebSocket.prototype = OriginalWebSocket.prototype;
+          window.WebSocket.OPEN = 1;
+          window.WebSocket.CLOSED = 3;
+          window.WebSocket.CLOSING = 2;
+          window.WebSocket.CONNECTING = 0;
+        }
+
+        var origConsoleError = console.error;
+        console.error = function() {
+          var firstArg = arguments.length > 0 ? String(arguments[0]) : '';
+          if (firstArg.indexOf('WebSocket') !== -1) {
+            return;
+          }
+          origConsoleError.apply(console, arguments);
+        };
+
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event && event.reason ? (event.reason.message || String(event.reason)) : '';
+          if (reason.indexOf('WebSocket') !== -1) {
+            event.preventDefault();
+            if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+          }
+        }, true);
+
+        // Clear any stale development Service Workers so UI updates reflect immediately
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for (var i = 0; i < registrations.length; i++) {
+              registrations[i].unregister();
+            }
+          }).catch(function() {});
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

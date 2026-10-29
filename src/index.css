@@ -1,0 +1,609 @@
+@import "tailwindcss";
+
+/* 
+ * HIGH-SPEED PERFORMANCE & BEST TRANSITIONS ENGINE
+ */
+
+*, *::before, *::after {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  touch-action: manipulation;
+  text-rendering: auto;
+  font-variant-ligatures: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+#root {
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+button, a, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Mobile WebView & Tablet Adaptive Viewport Touch Optimizations */
+html, body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+  max-width: 100vw;
+}
+
+/* Safe area inset helpers for mobile screens */
+.pb-safe {
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.px-safe {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Native Android/iOS ripple & press state feedback */
+@media (hover: none) and (pointer: coarse) {
+  button:active, a:active {
+    transform: scale(0.985);
+  }
+}
+
+/* Ensure images never cause unwanted horizontal scrolling on mobile */
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fluid responsive typography helper for mobile screens < 380px */
+@media (max-width: 375px) {
+  .text-responsive-xs {
+    font-size: 0.6875rem !important; /* 11px */
+  }
+  .text-responsive-sm {
+    font-size: 0.75rem !important; /* 12px */
+  }
+}
+
+/* Hide scrollbar while keeping scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Clean transitions without GPU texture memory exhaustion */
+.transform-gpu {
+  backface-visibility: hidden;
+}
+
+.fast-transition {
+  transition: opacity 0.18s ease, 
+              background-color 0.15s ease, 
+              border-color 0.15s ease, 
+              box-shadow 0.18s ease;
+}
+
+.active-press {
+  transition: transform 0.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.active-press:active {
+  transform: scale(0.975);
+}
+
+/* 
+ * PREMIUM DARK MODE DESIGN SYSTEM
+ * Highly cohesive, mathematical color overrides for elegant, eyesafe late-night learning.
+ */
+
+:root {
+  /* Light mode is default */
+  --bg-primary: #f8fafc; /* slate-50 */
+  --bg-secondary: #f1f5f9; /* slate-100 */
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0; /* slate-200 */
+  --text-primary: #0f172a; /* slate-900 */
+  --text-secondary: #475569; /* slate-600 */
+  --text-muted: #94a3b8; /* slate-400 */
+  --theme-accent: #4f46e5;
+  --theme-glow: rgba(79, 70, 229, 0.15);
+}
+
+/* Explicit theme container transitions without global click flickering */
+.theme-transition {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* ========================================================
+   PREMIUM THEMES SYSTEM (Sahara, Candy, Silk, Emerald, etc.)
+   ======================================================== */
+
+/* 1. SAHARA SUNSET THEME */
+.theme-sahara:not(.dark) {
+  --bg-primary: #fffbeb; /* amber-50 */
+  --bg-secondary: #fef3c7; /* amber-100 */
+  --card-bg: #ffffff;
+  --card-border: #fde68a; /* amber-200 */
+  --text-primary: #451a03; /* amber-950 */
+  --text-secondary: #78350f; /* amber-900 */
+  --text-muted: #b45309; /* amber-700 */
+  --theme-accent: #d97706;
+  --theme-glow: rgba(217, 119, 6, 0.25);
+}
+.theme-sahara:not(.dark) body,
+.theme-sahara:not(.dark) .min-h-screen,
+.theme-sahara:not(.dark) .bg-slate-50 {
+  background-color: #fffdf5 !important;
+}
+.theme-sahara:not(.dark) .bg-indigo-600,
+.theme-sahara:not(.dark) .bg-indigo-900,
+.theme-sahara:not(.dark) .bg-slate-900 {
+  background-color: #78350f !important;
+}
+.theme-sahara:not(.dark) .text-indigo-600 {
+  color: #b45309 !important;
+}
+.theme-sahara:not(.dark) .border-indigo-500 {
+  border-color: #d97706 !important;
+}
+
+/* 2. CANDY DREAM THEME */
+.theme-candy:not(.dark) {
+  --bg-primary: #fdf2f8; /* pink-50 */
+  --bg-secondary: #fce7f3; /* pink-100 */
+  --card-bg: #ffffff;
+  --card-border: #fbcfe8; /* pink-200 */
+  --text-primary: #500724; /* pink-950 */
+  --text-secondary: #831843; /* pink-900 */
+  --text-muted: #db2777; /* pink-600 */
+  --theme-accent: #ec4899;
+  --theme-glow: rgba(236, 72, 153, 0.25);
+}
+.theme-candy:not(.dark) body,
+.theme-candy:not(.dark) .min-h-screen,
+.theme-candy:not(.dark) .bg-slate-50 {
+  background-color: #fff1f8 !important;
+}
+.theme-candy:not(.dark) .bg-indigo-600,
+.theme-candy:not(.dark) .bg-indigo-900,
+.theme-candy:not(.dark) .bg-slate-900 {
+  background-color: #831843 !important;
+}
+.theme-candy:not(.dark) .text-indigo-600 {
+  color: #db2777 !important;
+}
+.theme-candy:not(.dark) .border-indigo-500 {
+  border-color: #ec4899 !important;
+}
+
+/* 3. SILK & PEARL THEME */
+.theme-silk:not(.dark) {
+  --bg-primary: #faf5ff; /* purple-50 / champagne */
+  --bg-secondary: #f3e8ff; /* purple-100 */
+  --card-bg: #ffffff;
+  --card-border: #e9d5ff; /* purple-200 */
+  --text-primary: #2e1065; /* purple-950 */
+  --text-secondary: #581c87; /* purple-900 */
+  --text-muted: #9333ea; /* purple-600 */
+  --theme-accent: #a855f7;
+  --theme-glow: rgba(168, 85, 247, 0.2);
+}
+.theme-silk:not(.dark) body,
+.theme-silk:not(.dark) .min-h-screen,
+.theme-silk:not(.dark) .bg-slate-50 {
+  background-color: #fbf8ff !important;
+}
+.theme-silk:not(.dark) .bg-indigo-600,
+.theme-silk:not(.dark) .bg-indigo-900,
+.theme-silk:not(.dark) .bg-slate-900 {
+  background-color: #4c1d95 !important;
+}
+.theme-silk:not(.dark) .text-indigo-600 {
+  color: #7e22ce !important;
+}
+.theme-silk:not(.dark) .border-indigo-500 {
+  border-color: #a855f7 !important;
+}
+
+/* 4. EMERALD FOREST THEME */
+.theme-emerald:not(.dark) {
+  --bg-primary: #ecfdf5; /* emerald-50 */
+  --bg-secondary: #d1fae5; /* emerald-100 */
+  --card-bg: #ffffff;
+  --card-border: #a7f3d0; /* emerald-200 */
+  --text-primary: #022c22; /* emerald-950 */
+  --text-secondary: #064e3b; /* emerald-900 */
+  --text-muted: #059669; /* emerald-600 */
+  --theme-accent: #059669;
+  --theme-glow: rgba(5, 150, 105, 0.22);
+}
+.theme-emerald:not(.dark) body,
+.theme-emerald:not(.dark) .min-h-screen,
+.theme-emerald:not(.dark) .bg-slate-50 {
+  background-color: #f2fcf6 !important;
+}
+.theme-emerald:not(.dark) .bg-indigo-600,
+.theme-emerald:not(.dark) .bg-indigo-900,
+.theme-emerald:not(.dark) .bg-slate-900 {
+  background-color: #064e3b !important;
+}
+.theme-emerald:not(.dark) .text-indigo-600 {
+  color: #059669 !important;
+}
+.theme-emerald:not(.dark) .border-indigo-500 {
+  border-color: #10b981 !important;
+}
+
+/* 5. MIDNIGHT VELVET THEME */
+.theme-midnight {
+  --bg-primary: #f5f3ff;
+  --bg-secondary: #ede9fe;
+  --card-bg: #ffffff;
+  --card-border: #ddd6fe;
+  --text-primary: #1e1b4b;
+  --text-secondary: #4338ca;
+  --text-muted: #6366f1;
+  --theme-accent: #6366f1;
+  --theme-glow: rgba(99, 102, 241, 0.15);
+}
+.theme-midnight body,
+.theme-midnight .min-h-screen {
+  background-color: #f5f3ff !important;
+  color: #1e1b4b !important;
+}
+
+/* 6. CYBERPUNK NEON THEME */
+.theme-cyberpunk {
+  --bg-primary: #ecfeff;
+  --bg-secondary: #cffaff;
+  --card-bg: #ffffff;
+  --card-border: #a5f3fc;
+  --text-primary: #083344;
+  --text-secondary: #0e7490;
+  --text-muted: #06b6d4;
+  --theme-accent: #0284c7;
+  --theme-glow: rgba(6, 182, 212, 0.15);
+}
+.theme-cyberpunk body,
+.theme-cyberpunk .min-h-screen {
+  background-color: #ecfeff !important;
+  color: #083344 !important;
+}
+
+/* 7. NORDIC FROST THEME */
+.theme-nordic:not(.dark) {
+  --bg-primary: #f0f9ff;
+  --bg-secondary: #e0f2fe;
+  --card-bg: #ffffff;
+  --card-border: #bae6fd;
+  --text-primary: #082f49;
+  --text-secondary: #0369a1;
+  --text-muted: #0284c7;
+  --theme-accent: #0284c7;
+  --theme-glow: rgba(2, 132, 199, 0.2);
+}
+.theme-nordic:not(.dark) body,
+.theme-nordic:not(.dark) .min-h-screen,
+.theme-nordic:not(.dark) .bg-slate-50 {
+  background-color: #f3faff !important;
+}
+
+.dark {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+}
+
+/* Global utility overrides ensuring light, high-contrast display */
+.dark body,
+.dark .min-h-screen,
+.dark .bg-slate-50,
+.dark .bg-slate-50\/50,
+.dark .bg-slate-50\/30,
+.dark .bg-slate-100\/40,
+.dark .bg-slate-50\/40 {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+.dark header,
+.dark footer,
+.dark .bg-white,
+.dark .bg-white\/95,
+.dark .bg-white\/80,
+.dark [class*="bg-white"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Header border */
+.dark header {
+  border-color: var(--card-border) !important;
+}
+
+/* Text Overrides */
+.dark .text-slate-900,
+.dark .text-slate-800,
+.dark .text-slate-700,
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: var(--text-primary) !important;
+}
+
+.dark .text-slate-600,
+.dark .text-slate-500,
+.dark .text-slate-400,
+.dark .text-slate-500\/90 {
+  color: var(--text-secondary) !important;
+}
+
+/* Borders */
+.dark .border-slate-200,
+.dark .border-slate-200\/90,
+.dark .border-slate-200\/80,
+.dark .border-slate-200\/55,
+.dark .border-slate-100,
+.dark .border-indigo-100,
+.dark .border-indigo-100\/60,
+.dark hr {
+  border-color: var(--card-border) !important;
+}
+
+/* Secondary surface items */
+.dark .bg-slate-100,
+.dark .bg-slate-50,
+.dark .bg-slate-50\/30,
+.dark .bg-slate-50\/60,
+.dark .bg-slate-100\/80,
+.dark [class*="bg-slate-100"],
+.dark [class*="bg-slate-50"] {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Indigo soft elements can be styled with dark purple accents */
+.dark .bg-indigo-50,
+.dark .bg-indigo-50\/40,
+.dark .bg-indigo-50\/60,
+.dark .from-indigo-50\/40 {
+  background-color: #1e1b4b !important; /* soft dark indigo */
+}
+
+/* Inputs, select dropdowns, textareas */
+.dark select,
+.dark input,
+.dark textarea {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--card-border) !important;
+}
+
+.dark select option {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Dropdowns & Hamburger Menus */
+.dark .relative div.absolute,
+.dark .shadow-xl {
+  background-color: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Modals & Overlays */
+.dark .bg-slate-900\/60,
+.dark .bg-slate-950\/70,
+.dark .bg-slate-950\/80,
+.dark .bg-slate-900\/60\/60 {
+  background-color: rgba(4, 6, 12, 0.8) !important;
+}
+
+/* Hover effects */
+.dark .hover\:bg-slate-50:hover,
+.dark .hover\:bg-slate-100:hover,
+.dark .hover\:bg-slate-200:hover,
+.dark .group-hover\:bg-slate-100:hover {
+  background-color: var(--card-border) !important;
+}
+
+/* Custom cards or active states */
+.dark .active-view,
+.dark .bg-indigo-50\/60 {
+  background-color: #1e1b4b !important;
+}
+
+/* KaTeX Math & Fraction Enhancements */
+.katex {
+  font-size: 1.05em;
+  text-rendering: auto;
+}
+
+.katex .frac-line {
+  border-bottom-width: 1.5px !important;
+}
+
+.inline-math-item {
+  vertical-align: middle;
+}
+
+/* Hide any MathML ghost tags to prevent duplicate overlapping text artifacts */
+.katex-mathml {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+}
+
+/* Protect KaTeX font metrics from custom application fonts */
+.katex, .katex * {
+  font-family: KaTeX_Main, KaTeX_Math, KaTeX_AMS, 'Times New Roman', serif !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  letter-spacing: normal !important;
+}
+
+/*
+ * DYNAMIC TYPOGRAPHY & FONT SYSTEM (English + Telugu Support)
+ */
+
+:root {
+  --app-font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif;
+  --app-line-height: 1.65;
+  --app-font-weight: 400;
+  --mcq-font-scale: 1;
+}
+
+html, body, #root {
+  font-family: var(--app-font-family) !important;
+  line-height: var(--app-line-height);
+  height: auto !important;
+  min-height: 100vh;
+}
+
+/* Ensure font applies dynamically across all components, excluding KaTeX */
+button, input, select, textarea, h1, h2, h3, h4, h5, h6, p, label, div[class*="text-"], .practice-arena-container, span:not(.katex):not(.katex *) {
+  font-family: var(--app-font-family) !important;
+}
+
+/* Clean, artifact-free MCQ scalable text container */
+.mcq-scalable-text {
+  line-height: 1.65 !important;
+  word-break: normal;
+  overflow-wrap: break-word;
+  letter-spacing: normal;
+}
+
+.mcq-scalable-text p,
+.mcq-scalable-text div,
+.mcq-scalable-text span:not(.katex):not(.katex *) {
+  line-height: inherit;
+}
+
+/* Font Family Classes */
+.font-family-default,
+body.font-family-default {
+  --app-font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif;
+}
+
+.font-family-academic-serif,
+body.font-family-academic-serif {
+  --app-font-family: 'Merriweather', 'Noto Sans Telugu', Georgia, serif;
+}
+
+.font-family-dyslexic,
+body.font-family-dyslexic {
+  --app-font-family: 'Atkinson Hyperlegible', 'Plus Jakarta Sans', 'Noto Sans Telugu', system-ui, sans-serif;
+}
+
+.font-family-poppins,
+body.font-family-poppins {
+  --app-font-family: 'Poppins', 'Noto Sans Telugu', system-ui, sans-serif;
+}
+
+.font-family-tech-mono,
+body.font-family-tech-mono {
+  --app-font-family: 'JetBrains Mono', 'Noto Sans Telugu', monospace;
+}
+
+/* Font Size Scales applied globally on root html */
+html.font-scale-small, html.font-scale-small body {
+  font-size: 14px;
+}
+html.font-scale-default, html.font-scale-default body {
+  font-size: 16px;
+}
+html.font-scale-medium, html.font-scale-medium body {
+  font-size: 17.5px;
+}
+html.font-scale-large, html.font-scale-large body {
+  font-size: 19px;
+}
+html.font-scale-xlarge, html.font-scale-xlarge body {
+  font-size: 21px;
+}
+
+/* Line Height Scales */
+html.line-height-compact {
+  --app-line-height: 1.4;
+}
+html.line-height-normal {
+  --app-line-height: 1.6;
+}
+html.line-height-relaxed {
+  --app-line-height: 1.8;
+}
+html.line-height-spacious {
+  --app-line-height: 2.0;
+}
+
+/* Font Weight Settings */
+html.font-weight-regular {
+  --app-font-weight: 400;
+}
+html.font-weight-medium {
+  --app-font-weight: 500;
+}
+html.font-weight-bold {
+  --app-font-weight: 600;
+}
+
+/* High-Contrast Mode */
+html.high-contrast-text {
+  --text-primary: #000000;
+}
+html.dark.high-contrast-text {
+  --text-primary: #ffffff;
+}
+
+/* Additional Dark Mode Fixes for Quiz Options, Cards & Text */
+.dark button {
+  color: inherit;
+}
+.dark button.bg-white,
+.dark .bg-white button {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--card-border) !important;
+}
+.dark img {
+  opacity: 0.92;
+  filter: brightness(0.95);
+}
+.dark .text-slate-900, 
+.dark .text-slate-800, 
+.dark .text-slate-700, 
+.dark .text-slate-600 {
+  color: var(--text-primary) !important;
+}
+
+

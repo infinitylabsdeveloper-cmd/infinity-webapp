@@ -1,0 +1,77 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAuthorizedAdmin() {
+      return isSignedIn() 
+        && request.auth.token.email == 'sobhadhanaraju0@gmail.com' 
+        && (request.auth.token.email_verified == true || request.auth.token.firebase.sign_in_provider == 'google.com');
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Default deny all undefined paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 1. Users collection: users can read and update their own document, admin has full access
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAuthorizedAdmin();
+    }
+
+    // 2. Syllabus & Subject configurations: public read, admin write
+    match /appSyllabus/{appId} {
+      allow read: if true;
+      allow create, update, delete: if isAuthorizedAdmin();
+    }
+
+    // 3. Current Affairs: public read, admin write
+    match /currentAffairs/{currentAffairId} {
+      allow read: if true;
+      allow create, update, delete: if isAuthorizedAdmin();
+    }
+
+    // 4. MCQs & Questions: public read for practice, admin write
+    match /questions/{questionId} {
+      allow read: if true;
+      allow create, update, delete: if isAuthorizedAdmin();
+    }
+
+    // 5. Purchases & Subscriptions: authenticated user read/create, admin manage
+    match /purchases/{purchaseId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update, delete: if isAuthorizedAdmin();
+    }
+
+    // 6. Mock tests: public read, authenticated users can create / take tests, admin manage
+    match /mockTests/{mockTestId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+
+    // 7. Mock test attempts: authenticated user can create/read their attempts
+    match /mockTestAttempts/{attemptId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+
+    // 8. Practice results: authenticated users can write and read their results
+    match /practiceResults/{resultId} {
+      allow read, create: if isSignedIn();
+      allow update, delete: if isAuthorizedAdmin();
+    }
+
+    // 9. Bookmarks: authenticated users or public for local student sync
+    match /bookmarks/{bookmarkId} {
+      allow read, write: if true;
+    }
+  }
+}

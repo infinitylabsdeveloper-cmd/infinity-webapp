@@ -1,0 +1,194 @@
+{
+  "entities": {
+    "CurrentAffair": {
+      "title": "Current Affair",
+      "description": "Current affairs item for multi-app distribution",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "appIds": { "type": "array", "items": { "type": "string" } },
+        "language": { "type": "string" },
+        "category": { "type": "string" },
+        "month": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "publishedDate": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "timestamp" }
+      },
+      "required": ["appIds", "title", "content", "status", "startDate"]
+    },
+    "Poster": {
+      "title": "Poster",
+      "description": "Promotional poster or banner",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "appIds": { "type": "array", "items": { "type": "string" } },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "actionUrl": { "type": "string" },
+        "ctaText": { "type": "string" },
+        "targetType": { "type": "string" },
+        "targetSubjectId": { "type": "string" },
+        "position": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["appIds", "title", "imageUrl", "status", "startDate", "endDate"]
+    },
+    "Coupon": {
+      "title": "Coupon",
+      "description": "Discount coupon code",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "type": { "type": "string" },
+        "discountValue": { "type": "number" },
+        "startDate": { "type": "string" },
+        "expiryDate": { "type": "string" },
+        "appIds": { "type": "array", "items": { "type": "string" } },
+        "maxTotalRedemptions": { "type": "number" },
+        "redemptionCount": { "type": "number" },
+        "perUserLimit": { "type": "number" },
+        "status": { "type": "string" }
+      },
+      "required": ["code", "type", "discountValue", "appIds", "status"]
+    },
+    "SubscriptionPlan": {
+      "title": "Subscription Plan",
+      "description": "Subscription plan for a specific app",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "billingCycle": { "type": "string" },
+        "status": { "type": "string" },
+        "startDate": { "type": "string" }
+      },
+      "required": ["appId", "name", "price", "billingCycle", "status", "startDate"]
+    },
+    "Question": {
+      "title": "Question",
+      "description": "MCQ practice question",
+      "type": "object",
+      "properties": {
+        "appId": { "type": "string", "maxLength": 100 },
+        "subjectId": { "type": "string", "maxLength": 100 },
+        "category": { "type": "string", "maxLength": 50 },
+        "unitId": { "type": "string", "maxLength": 100 },
+        "topicId": { "type": "string", "maxLength": 100 },
+        "subtopic": { "type": "string", "maxLength": 200 },
+        "questionText": { "type": "string", "maxLength": 2000 },
+        "correctOption": { "type": "string", "maxLength": 1 },
+        "explanation": { "type": "string", "maxLength": 3000 }
+      },
+      "required": ["appId", "subjectId", "questionText", "correctOption"]
+    },
+    "SubscriptionPurchase": {
+      "title": "Subscription Purchase",
+      "description": "User subscription purchase record",
+      "type": "object",
+      "properties": {
+        "transactionId": { "type": "string", "maxLength": 100 },
+        "appId": { "type": "string", "maxLength": 100 },
+        "appName": { "type": "string", "maxLength": 150 },
+        "amount": { "type": "number" },
+        "currencySymbol": { "type": "string", "maxLength": 10 },
+        "userName": { "type": "string", "maxLength": 150 },
+        "email": { "type": "string", "maxLength": 200 },
+        "date": { "type": "string", "maxLength": 50 },
+        "platform": { "type": "string", "maxLength": 50 },
+        "paymentStatus": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["transactionId", "appId", "amount", "email"]
+    },
+    "MockTest": {
+      "title": "Mock Test",
+      "description": "Generated or official mock test configuration and questions snapshot",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 200 },
+        "appId": { "type": "string", "maxLength": 100 },
+        "creatorType": { "type": "string", "maxLength": 50 },
+        "creatorUserId": { "type": "string", "maxLength": 128 },
+        "status": { "type": "string", "maxLength": 50 },
+        "questionsCount": { "type": "number" },
+        "durationMinutes": { "type": "number" },
+        "totalMarks": { "type": "number" },
+        "positiveMarks": { "type": "number" },
+        "negativeMarks": { "type": "number" },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["title", "appId", "creatorType", "status", "questionsCount"]
+    },
+    "MockTestAttempt": {
+      "title": "Mock Test Attempt",
+      "description": "User test attempt results and answer tracking",
+      "type": "object",
+      "properties": {
+        "mockTestId": { "type": "string", "maxLength": 128 },
+        "appId": { "type": "string", "maxLength": 100 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "status": { "type": "string", "maxLength": 50 },
+        "score": { "type": "number" },
+        "totalQuestions": { "type": "number" },
+        "timeSpentSeconds": { "type": "number" },
+        "startedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["mockTestId", "appId", "userId", "status", "startedAt"]
+    },
+    "Bookmark": {
+      "title": "Bookmark",
+      "description": "User saved questions and current affairs items",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "appId": { "type": "string", "maxLength": 100 },
+        "itemType": { "type": "string", "maxLength": 50 },
+        "itemId": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["userId", "appId", "itemType", "itemId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/currentAffairs/{currentAffairId}": {
+      "schema": "$ref:entities.CurrentAffair"
+    },
+    "/posters/{posterId}": {
+      "schema": "$ref:entities.Poster"
+    },
+    "/coupons/{couponId}": {
+      "schema": "$ref:entities.Coupon"
+    },
+    "/subscriptionPlans/{planId}": {
+      "schema": "$ref:entities.SubscriptionPlan"
+    },
+    "/questions/{questionId}": {
+      "schema": "$ref:entities.Question"
+    },
+    "/purchases/{purchaseId}": {
+      "schema": "$ref:entities.SubscriptionPurchase"
+    },
+    "/mockTests/{mockTestId}": {
+      "schema": "$ref:entities.MockTest"
+    },
+    "/mockTestAttempts/{attemptId}": {
+      "schema": "$ref:entities.MockTestAttempt"
+    },
+    "/bookmarks/{bookmarkId}": {
+      "schema": "$ref:entities.Bookmark"
+    }
+  }
+}
+
